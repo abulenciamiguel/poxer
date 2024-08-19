@@ -23,7 +23,7 @@ process minimap2PE {
         -x sr \\
         -a \\
         -t $params.thread \\
-        $params.reference \\
+        $params.refGenome \\
         $fastq_1 \\
         $fastq_2 \\
         > ${sample}.sam
