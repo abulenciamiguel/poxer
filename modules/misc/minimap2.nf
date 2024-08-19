@@ -24,7 +24,7 @@ process minimap2PE {
         -x sr \\
         -a \\
         -t $params.thread \\
-        $PWD/$reference \\
+        $reference \\
         $fastq_1 \\
         $fastq_2 \\
         > ${sample}.sam
