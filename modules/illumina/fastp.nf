@@ -4,12 +4,12 @@ process fastp {
     tag "trimming $sample"
 
 
-    // publishDir (
-    // path: "${params.outDir}/${task.process.replaceAll(":","_")}_trimmed",
-    // pattern: "*trimmed_*fastq",
-    // mode: 'copy',
-    // overwrite: 'true'
-    // )
+    publishDir (
+    path: "${params.outDir}/${task.process.replaceAll(":","_")}_trimmed",
+    pattern: "*trimmed_*fastq",
+    mode: 'copy',
+    overwrite: 'true'
+    )
 
     publishDir (
     path: "${params.outDir}/${task.process.replaceAll(":","_")}_report",
@@ -22,7 +22,7 @@ process fastp {
     tuple val(sample), path(fastq_1), path(fastq_2)
 
     output:
-    //tuple val(sample), path("*trimmed_1.fastq"), path("*trimmed_2.fastq"), emit: trimmed
+    tuple val(sample), path("*trimmed_1.fastq"), path("*trimmed_2.fastq"), emit: trimmed
     tuple val(sample), path("*.json"), emit: fastP_json
     tuple val(sample), path("*.html"), emit: fastP_html
 

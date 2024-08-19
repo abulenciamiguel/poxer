@@ -19,9 +19,9 @@ workflow illuminaShotgun {
 
     main:
         fastqcRawPE(ch_sample)
-        //fastp(ch_sample)
-        //fastqcTrimmedPE(fastp.out.trimmed)
+        fastp(ch_sample)
+        fastqcTrimmedPE(fastp.out.trimmed)
 
-        //minimap2PE(fastp.out.trimmed)
+        minimap2PE(fastp.out.trimmed)
 
 }
