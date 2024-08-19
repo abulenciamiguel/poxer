@@ -22,6 +22,6 @@ workflow illuminaShotgun {
         fastp(ch_sample)
         fastqcTrimmedPE(fastp.out.trimmed)
 
-        minimap2PE(fastp.out.trimmed)
+        minimap2PE(fastp.out.trimmed, params.refGenome)
 
 }

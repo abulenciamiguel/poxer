@@ -12,6 +12,7 @@ process minimap2PE {
 
     input:
     tuple val(sample), path(fastq_1), path(fastq_2)
+    path(reference)
 
     output:
     tuple val(sample), path("*sam"), emit: sam
@@ -23,7 +24,7 @@ process minimap2PE {
         -x sr \\
         -a \\
         -t $params.thread \\
-        $PWD/$params.refGenome \\
+        $PWD/$reference \\
         $fastq_1 \\
         $fastq_2 \\
         > ${sample}.sam
