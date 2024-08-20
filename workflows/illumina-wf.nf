@@ -7,7 +7,10 @@ include {fastp} from '../modules/illumina/fastp.nf'
 include {fastqcRawPE} from '../modules/misc/fastqc.nf'
 include {fastqcTrimmedPE} from '../modules/misc/fastqc.nf'
 include {minimap2PE} from '../modules/misc/minimap2.nf'
-
+include {sam2bam} from '../modules/misc/samtools.nf'
+include {sortIndexMinimap} from '../modules/misc/samtools.nf'
+include {lofreqVariant} from '../modules/illumina/variantCall.nf'
+include {kraken} from '../modules/misc/dehost.nf'
 
 
 workflow illuminaShotgun {
@@ -22,6 +25,11 @@ workflow illuminaShotgun {
         fastp(ch_sample)
         fastqcTrimmedPE(fastp.out.trimmed)
 
-        minimap2PE(fastp.out.trimmed, params.refGenome)
+        kraken(fastp.out.trimmed, params.krakenDb)
+        minimap2PE(kraken.out.dehosted, params.refGenome)
+        sam2bam(minimap2PE.out.sam)
+        sortIndexMinimap(sam2bam.out.bam)
+
+        lofreqVariant(sortIndexMinimap.out.bamBai, params.refGenome)
 
 }
