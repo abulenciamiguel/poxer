@@ -5,13 +5,14 @@ nextflow.enable.dsl=2
 // Define a help message
 def helpMessage = """
 Usage:
-    nextflow run poxer --illuminaShotgun --inDir reads --outDir results --refGenome
+    nextflow run poxer --illuminaShotgun --inDir reads --outDir results --refGenome Zaire.fasta --krakenDb path/to/humanKrakenDB
 
 Options:
     --help                  Show this help message and exit
     --inDir                 Directory containing the raw reads
     --outDir                Directory of the results
     --refGenome             Path of the reference genome fasta file
+    --krakenDb              Path of the human Kraken database
 
 Choose only one workflow.
     --illuminaShotgun       Run using the Illumina shotgun workflow
